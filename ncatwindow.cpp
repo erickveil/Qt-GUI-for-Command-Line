@@ -18,14 +18,20 @@ NcatWindow::~NcatWindow()
 
 void NcatWindow::on_pushButton_clicked()
 {
-    /*
-    string ip=tb_ip.text;
-    string port=tb_port.text;
-    string msg=tb_msg.text;
+    QString q_ip=this->ui->tb_ip->displayText();
+    QString q_port=this->ui->tb_port->displayText();
+    QString q_msg=this->ui->tb_msg->displayText();
 
-    string cmd="echo '"+msg+"' | ncat "+ip+" "+port;
+    string str_msg=q_msg.toLocal8Bit().constData();
+    string str_ip=q_ip.toLocal8Bit().constData();
+    string str_port=q_port.toLocal8Bit().constData();
+
+    // echo to stdout as well as ncat using the shell
+    string cmd="echo 'Sending ["+str_msg+"] to "+str_ip+":"+str_port+"\n';";
+    cmd+="echo '"+str_msg+"' | ncat "+str_ip+" "+str_port;
+
     const char* cmd_ptr = cmd.c_str();
+
     system(cmd_ptr);
-    */
-    system("echo 'This is a test' | ncat 192.168.60.78 50503");
 }
+
