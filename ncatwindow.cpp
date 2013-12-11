@@ -1,6 +1,5 @@
 #include "ncatwindow.h"
 #include "ui_ncatwindow.h"
-#include <string>
 #include "stdlib.h"
 using namespace std;
 
@@ -18,20 +17,13 @@ NcatWindow::~NcatWindow()
 
 void NcatWindow::on_pushButton_clicked()
 {
-    QString q_ip=this->ui->tb_ip->displayText();
-    QString q_port=this->ui->tb_port->displayText();
-    QString q_msg=this->ui->tb_msg->displayText();
+    QString ip=this->ui->tb_ip->displayText();
+    QString port=this->ui->tb_port->displayText();
+    QString msg=this->ui->tb_msg->displayText();
 
-    string str_msg=q_msg.toLocal8Bit().constData();
-    string str_ip=q_ip.toLocal8Bit().constData();
-    string str_port=q_port.toLocal8Bit().constData();
+    QString cmd="echo 'Sending [" + msg + "] to " + ip + ":" + port +"';";
+    cmd+="echo '" + msg + "' | ncat " + ip + " " + port;
 
-    // echo to stdout as well as ncat using the shell
-    string cmd="echo 'Sending ["+str_msg+"] to "+str_ip+":"+str_port+"\n';";
-    cmd+="echo '"+str_msg+"' | ncat "+str_ip+" "+str_port;
-
-    const char* cmd_ptr = cmd.c_str();
-
-    system(cmd_ptr);
+    system(cmd.toLocal8Bit().constData());
 }
 
