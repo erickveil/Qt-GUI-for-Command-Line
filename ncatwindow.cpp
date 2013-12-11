@@ -18,6 +18,7 @@ NcatWindow::~NcatWindow()
 
 void NcatWindow::on_pushButton_clicked()
 {
+    /*
     string ip=tb_ip.text;
     string port=tb_port.text;
     string msg=tb_msg.text;
@@ -25,4 +26,6 @@ void NcatWindow::on_pushButton_clicked()
     string cmd="echo '"+msg+"' | ncat "+ip+" "+port;
     const char* cmd_ptr = cmd.c_str();
     system(cmd_ptr);
+    */
+    system("echo 'This is a test' | ncat 192.168.60.78 50503");
 }
